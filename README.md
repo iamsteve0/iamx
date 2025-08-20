@@ -1,5 +1,8 @@
 # iamx - IAM Policy Explainer
 
+[![PyPI version](https://badge.fury.io/py/iamx.svg)](https://badge.fury.io/py/iamx)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 A local-first IAM policy analyzer that scans AWS IAM JSON policies, detects risky patterns deterministically, explains them in plain English, assigns severity levels, and suggests least-privilege fixes.
 
 ## 🎯 Why iamx?
@@ -52,6 +55,19 @@ pip install -e .
 
 ## 📖 Quick Start
 
+**Install and use iamx in 30 seconds:**
+
+```bash
+# Install (one command!)
+pip install iamx
+
+# Analyze a policy (one command!)
+iamx analyze policy.json
+
+# Start web UI (one command!)
+iamx web
+```
+
 ### CLI Usage
 
 ```bash
@@ -87,12 +103,22 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Run iamx
-        uses: yourusername/iamx-action@v1
+      - name: Install iamx
+        run: pip install iamx
+      - name: Run iamx analysis
+        run: iamx analyze policies/ --output iamx-report.md --format markdown
+      - name: Comment on PR
+        uses: actions/github-script@v6
         with:
-          path: 'policies/'
-          fail-on: 'high'
-          output: 'iamx-report.md'
+          script: |
+            const fs = require('fs');
+            const report = fs.readFileSync('iamx-report.md', 'utf8');
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `## 🔍 IAM Policy Security Analysis\n\n${report}\n\n---\n*This analysis was performed by [iamx](https://github.com/iamsteve0/iamx) - IAM Policy Explainer*`
+            });
 ```
 
 ## 📊 Example Output
