@@ -47,15 +47,38 @@ Copy-pasting IAM policies into ChatGPT is unsafe, inaccurate, and doesn't scale 
 # Option 1: One-liner (recommended)
 pip install iamx
 
-# Option 2: Clean installation script
+# Option 2: Homebrew (macOS users)
+brew install iamsteve0/tap/iamx
+
+# Option 2b: pipx (isolated Python installation)
+pipx install iamx
+
+# Option 3: Clean installation script
 curl -sSL https://raw.githubusercontent.com/iamsteve0/iamx/main/install.sh | bash
 
-# Option 3: Quiet installation (less output)
+# Option 4: Quiet installation (less output)
 pip install iamx --quiet
 
 # What you'll see:
 # ✅ Successfully installed iamx-0.1.0
 # (All dependencies are installed automatically)
+
+## 🍎 macOS Users
+
+If you encounter "externally-managed-environment" errors:
+
+```bash
+# Option 1: Use pipx (recommended)
+pipx install iamx
+
+# Option 2: Use virtual environment
+python3 -m venv venv
+source venv/bin/activate
+pip install iamx
+
+# Option 3: Use Homebrew (when available)
+brew install iamsteve0/tap/iamx
+```
 
 # Or install from source
 git clone https://github.com/iamsteve0/iamx.git
@@ -215,6 +238,23 @@ pip install iamx --quiet
 
 # Or suppress dependency details:
 pip install iamx --no-deps
+```
+
+**macOS "externally-managed-environment" error:**
+```bash
+# Option 1: Use Homebrew (recommended)
+brew install iamsteve0/tap/iamx
+
+# Option 2: Use virtual environment
+python3 -m venv venv
+source venv/bin/activate
+pip install iamx
+
+# Option 3: Use pipx (isolated installation)
+pipx install iamx
+
+# Option 4: Use conda
+conda install -c conda-forge iamx
 ```
 
 ## 🤝 Contributing
