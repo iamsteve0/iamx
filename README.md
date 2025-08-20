@@ -48,7 +48,7 @@ Copy-pasting IAM policies into ChatGPT is unsafe, inaccurate, and doesn't scale 
 pip install iamx
 
 # Option 2: Homebrew (macOS users)
-brew install iamsteve0/tap/iamx
+brew install iamsteve0/iamx/iamx
 
 # Option 2b: pipx (isolated Python installation)
 pipx install iamx
@@ -77,7 +77,7 @@ source venv/bin/activate
 pip install iamx
 
 # Option 3: Use Homebrew (when available)
-brew install iamsteve0/tap/iamx
+brew install iamsteve0/iamx/iamx
 ```
 
 # Or install from source

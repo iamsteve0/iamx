@@ -9,7 +9,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     echo ""
     echo "💡 For macOS users, we recommend:"
     echo "   pipx install iamx    # Isolated installation (recommended)"
-    echo "   brew install iamsteve0/tap/iamx  # Homebrew (if available)"
+    echo "   brew install iamsteve0/iamx/iamx  # Homebrew (if available)"
     echo ""
     echo "📦 Installing with pip..."
     echo ""
