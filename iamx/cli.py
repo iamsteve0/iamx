@@ -123,7 +123,7 @@ def analyze(policy_files, output, output_format, fail_on, include_info, max_find
 
 @main.command()
 @click.option('--host', default='127.0.0.1', help='Host to bind to')
-@click.option('--port', default=8080, help='Port to bind to')
+@click.option('--port', default=8081, help='Port to bind to')
 @click.option('--reload', is_flag=True, help='Enable auto-reload for development')
 def web(host, port, reload):
     """Start the web interface."""
