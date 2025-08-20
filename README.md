@@ -166,7 +166,3 @@ MIT License - see [LICENSE](LICENSE) for details.
 - Built with modern Python tooling and best practices
 - Designed for the security and DevOps community
 - Inspired by the need for better IAM policy analysis tools
-
----
-
-**Made with ❤️ for the AWS security community**
