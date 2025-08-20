@@ -44,8 +44,18 @@ Copy-pasting IAM policies into ChatGPT is unsafe, inaccurate, and doesn't scale 
 ## 🛠️ Installation
 
 ```bash
-# Install directly from PyPI (recommended)
+# Option 1: One-liner (recommended)
 pip install iamx
+
+# Option 2: Clean installation script
+curl -sSL https://raw.githubusercontent.com/iamsteve0/iamx/main/install.sh | bash
+
+# Option 3: Quiet installation (less output)
+pip install iamx --quiet
+
+# What you'll see:
+# ✅ Successfully installed iamx-0.1.0
+# (All dependencies are installed automatically)
 
 # Or install from source
 git clone https://github.com/iamsteve0/iamx.git
@@ -196,6 +206,15 @@ sudo pip install iamx
 python -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
 pip install iamx
+```
+
+**Too much output during installation:**
+```bash
+# Use quiet mode for cleaner output:
+pip install iamx --quiet
+
+# Or suppress dependency details:
+pip install iamx --no-deps
 ```
 
 ## 🤝 Contributing
