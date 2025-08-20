@@ -41,15 +41,13 @@ Copy-pasting IAM policies into ChatGPT is unsafe, inaccurate, and doesn't scale 
 ## 🛠️ Installation
 
 ```bash
-# Clone the repository
-git clone https://github.com/yourusername/iamx.git
-cd iamx
-
-# Install dependencies
-pip install -e .
-
-# Or install directly from PyPI (when published)
+# Install directly from PyPI (recommended)
 pip install iamx
+
+# Or install from source
+git clone https://github.com/iamsteve0/iamx.git
+cd iamx
+pip install -e .
 ```
 
 ## 📖 Quick Start
@@ -76,7 +74,7 @@ iamx analyze policy.json --fail-on high
 # Start the local web interface
 iamx web
 
-# Open http://localhost:8080 in your browser
+# Open http://localhost:8081 in your browser
 ```
 
 ### GitHub Actions Integration
