@@ -34,7 +34,7 @@ jobs:
       - name: Install iamx
         run: |
           python -m pip install --upgrade pip
-          pip install iamx
+          pip install -e .
           
       - name: Find IAM policy files
         id: find-policies
@@ -109,7 +109,7 @@ jobs:
             ${reportContent}
             
             ---
-            *This analysis was performed by [iamx](https://github.com/yourusername/iamx) - IAM Policy Explainer*
+            *This analysis was performed by [iamx](https://github.com/iamsteve0/iamx) - IAM Policy Explainer*
             `;
             
             github.rest.issues.createComment({
