@@ -90,7 +90,12 @@ iamx analyze policy.json --fail-on high
 # Start the local web interface
 iamx web
 
-# Open http://localhost:8081 in your browser
+# The interface will automatically find an available port
+# Usually starts at http://localhost:8081
+# If port 8081 is busy, it will try 8082, 8083, etc.
+
+# You can also specify a custom port:
+iamx web --port 9000
 ```
 
 ### GitHub Actions Integration
@@ -159,6 +164,38 @@ iamx/
 ├── reports/        # Report generators
 ├── github/         # GitHub Actions integration
 └── tests/          # Test suite
+```
+
+## 🔧 Troubleshooting
+
+### Web UI Issues
+
+**Port already in use:**
+```bash
+# iamx automatically finds available ports, but you can specify one:
+iamx web --port 9000
+```
+
+**Web interface won't start:**
+```bash
+# Check if dependencies are installed:
+pip install iamx[web]
+
+# Try a different host:
+iamx web --host 0.0.0.0 --port 8081
+```
+
+### CLI Issues
+
+**Permission denied:**
+```bash
+# On macOS/Linux, you might need:
+sudo pip install iamx
+
+# Or use a virtual environment:
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+pip install iamx
 ```
 
 ## 🤝 Contributing

@@ -130,21 +130,54 @@ def web(host, port, reload):
     try:
         from .web.app_fixed import create_app
         import uvicorn
+        import socket
         
         app = create_app()
         
-        console.print(f"[green]Starting iamx web interface at http://{host}:{port}[/green]")
-        console.print("[yellow]Press Ctrl+C to stop[/yellow]")
+        # Try to find an available port
+        original_port = port
+        max_attempts = 10
         
-        uvicorn.run(
-            app,
-            host=host,
-            port=port,
-            reload=reload,
-            log_level="info" if reload else "warning",
-        )
+        for attempt in range(max_attempts):
+            try:
+                # Test if port is available
+                with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+                    s.bind((host, port))
+                    s.close()
+                
+                # Port is available, start the server
+                console.print(f"[green]Starting iamx web interface at http://{host}:{port}[/green]")
+                if port != original_port:
+                    console.print(f"[yellow]Note: Port {original_port} was busy, using port {port} instead[/yellow]")
+                console.print("[yellow]Press Ctrl+C to stop[/yellow]")
+                
+                uvicorn.run(
+                    app,
+                    host=host,
+                    port=port,
+                    reload=reload,
+                    log_level="info" if reload else "warning",
+                )
+                break
+                
+            except OSError as e:
+                if "Address already in use" in str(e) or "Permission denied" in str(e):
+                    port += 1
+                    if attempt == max_attempts - 1:
+                        console.print(f"[red]Error: Could not find an available port. Tried ports {original_port}-{port-1}[/red]")
+                        console.print("[yellow]Try specifying a different port with: iamx web --port 9000[/yellow]")
+                        sys.exit(1)
+                else:
+                    raise e
+                    
     except ImportError:
         console.print("[red]Error: Web dependencies not installed. Install with: pip install iamx[web][/red]")
+        sys.exit(1)
+    except KeyboardInterrupt:
+        console.print("\n[yellow]Web interface stopped.[/yellow]")
+    except Exception as e:
+        console.print(f"[red]Error starting web interface: {e}[/red]")
+        console.print("[yellow]Try: iamx web --port 9000[/yellow]")
         sys.exit(1)
 
 
